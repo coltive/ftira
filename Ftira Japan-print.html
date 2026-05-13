@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>Ftira フティーラ · Japan — Print</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@200;300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="site-shared.css" />
+  <link rel="stylesheet" href="dir-a.css" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--ft-cream, #FAF8F4);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body {
+      font-family: "Noto Serif JP", serif;
+      color: #1A1410;
+    }
+
+    /* Disable the viewport-locked scroll container for print */
+    .site-host {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      position: relative;
+    }
+    .site-host > .ftira-site {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    /* Make sticky nav static so it prints once at the top */
+    .ftira-site .nav {
+      position: static;
+      background: var(--ft-cream, #FAF8F4);
+      border-bottom: 1px solid var(--ft-limestone, #DDD0B0);
+      backdrop-filter: none;
+    }
+
+    /* Hide the tweaks panel and any toggle UI in print preview */
+    [class*="TweaksPanel"], .tweaks-panel,
+    [id^="tweaks-"], [class*="tweaks-"] { display: none !important; }
+
+    @page {
+      size: A4 portrait;
+      margin: 0.6cm;
+    }
+
+    @media print {
+      html, body {
+        background: var(--ft-cream, #FAF8F4) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Each major section starts on a fresh page (except the hero) */
+      .ftira-site .story,
+      .ftira-site .bread,
+      .ftira-site .locations,
+      .ftira-site .contact,
+      .ftira-site .footer {
+        break-before: page;
+        page-break-before: always;
+      }
+
+      /* Try to keep these blocks intact */
+      .ftira-site .hero-stats,
+      .ftira-site .pullquote,
+      .ftira-site .bread-item,
+      .ftira-site .loc-card,
+      .ftira-site .form-success,
+      .ftira-site .field {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Avoid orphaned headers */
+      .ftira-site h1, .ftira-site h2, .ftira-site h3 {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      /* Strip hover/transitions and animations */
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+
+      /* Reduce vertical padding so sections fit nicely on A4 */
+      .ftira-site .section,
+      .ftira-site .hero,
+      .ftira-site .story,
+      .ftira-site .bread,
+      .ftira-site .locations,
+      .ftira-site .contact {
+        padding-top: 28px !important;
+        padding-bottom: 28px !important;
+      }
+      .ftira-site .hero { padding-top: 16px !important; }
+
+      /* Tone down the very large display sizes for paper */
+      .ftira-site .hero-title-ja { font-size: 38px !important; line-height: 1.35 !important; }
+      .ftira-site .hero-title-en { font-size: 20px !important; }
+      .ftira-site .story-title-ja,
+      .ftira-site .bread-head .ja,
+      .ftira-site .locations .head .ja,
+      .ftira-site .contact .lead .ja { font-size: 28px !important; line-height: 1.4 !important; }
+      .ftira-site .hero-stat .num { font-size: 36px !important; }
+      .ftira-site .pullquote .ja { font-size: 18px !important; }
+      .ftira-site .pullquote .en { font-size: 13px !important; }
+      .ftira-site .pullquote .mark { font-size: 54px !important; }
+
+      /* Image placeholders shrink to fit on paper */
+      .ftira-site .hero-visual,
+      .ftira-site .img-placeholder {
+        max-height: 280px !important;
+      }
+      .ftira-site .loc-card { grid-template-rows: 160px auto !important; }
+
+      /* Bread items: tighter rows */
+      .ftira-site .bread-item { padding: 14px 0 !important; }
+      .ftira-site .bread-item .img { height: 80px !important; }
+
+      /* Buttons render with their fill colors */
+      .btn, .btn-primary { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      /* No backdrop-filter in print */
+      .ftira-site .nav { backdrop-filter: none !important; }
+    }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="site-data.jsx"></script>
+  <script type="text/babel" src="site-components.jsx"></script>
+  <script type="text/babel" src="dir-a.jsx"></script>
+
+  <script type="text/babel">
+    // Print version — fixed tweak defaults, no panel.
+    const PRINT_TWEAKS = {
+      langPrimary: "ja",
+      accent: "terra",
+      density: "comfortable",
+    };
+
+    function PrintApp() {
+      return (
+        <div className="site-host">
+          <DirectionA tweaks={PRINT_TWEAKS} />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<PrintApp />);
+
+    // Auto-print once fonts + layout are ready
+    (async function () {
+      try {
+        if (document.fonts && document.fonts.ready) {
+          await document.fonts.ready;
+        }
+      } catch (e) {}
+      // give React + images a beat to settle
+      await new Promise(r => setTimeout(r, 800));
+      window.print();
+    })();
+  </script>
+</body>
+</html>
