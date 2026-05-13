@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>Ftira フティーラ · Japan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="マルタで最も古いパン、いま日本へ。Ftira — Malta's oldest bread, now in Japan." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@200;300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="site-shared.css" />
+  <link rel="stylesheet" href="dir-a.css" />
+
+  <style>
+    html, body { margin: 0; padding: 0; background: var(--ft-cream, #FAF8F4); }
+    body {
+      font-family: "Noto Serif JP", serif;
+      color: #1A1410;
+    }
+    /* Full-bleed wrapper — fills viewport, internal scroll */
+    .site-host {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    .site-host > .ftira-site {
+      width: 100%;
+      height: 100%;
+    }
+    /* Loading state — shown until React mounts */
+    #root:empty::before {
+      content: "Ftira フティーラ";
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      color: #9A7B3C;
+      background: #FAF8F4;
+    }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react" src="site-data.jsx"></script>
+  <script type="text/babel" data-presets="react" src="site-components.jsx"></script>
+  <script type="text/babel" data-presets="react" src="dir-a.jsx"></script>
+
+  <script type="text/babel" data-presets="react">
+    // Fixed brand settings — was previously controlled by the dev Tweaks panel.
+    // Change these values to switch language priority, accent, or density.
+    const SITE_SETTINGS = {
+      langPrimary: "ja",      // "ja" or "en"
+      accent: "terra",        // "terra" or "gold"
+      density: "comfortable", // "comfortable" or "tight"
+    };
+
+    function App() {
+      return (
+        <div className="site-host">
+          <DirectionA tweaks={SITE_SETTINGS} />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
