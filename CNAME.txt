@@ -1,8 +1,0 @@
-# To use a custom domain with GitHub Pages:
-# 1. Replace this entire file content with just your domain, e.g:
-#    ftira.jp
-# 2. In your domain registrar, add a CNAME record pointing to:
-#    yourusername.github.io
-# 3. Enable custom domain in GitHub repo Settings → Pages
-#
-# Leave this file as-is if you don't have a custom domain yet.
