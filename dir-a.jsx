@@ -173,6 +173,48 @@ function DirectionA({ tweaks }) {
         </div>
       </section>
 
+      {/* JOURNAL */}
+      <section data-section="journal" className="journal">
+        <div className="journal-head">
+          <div className="journal-head-left">
+            <div className="eyebrow">{D.journal.eyebrow.ja} · {D.journal.eyebrow.en}</div>
+            <div className="num">04</div>
+            <div className="num-lbl">Chapter · 章</div>
+          </div>
+          <div className="journal-head-right">
+            <h2 className="journal-title-ja">{D.journal.title.ja}</h2>
+            <div className="journal-title-en">{D.journal.title.en}</div>
+            <div className="journal-intro">
+              {D.journal.intro.ja}
+              <span className="en">{D.journal.intro.en}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="journal-list">
+          {D.journal.items.map((item, i) => (
+            <a key={item.slug} href={`journal/${item.slug}.html`} className="journal-row">
+              <div className="journal-row-meta">
+                <div className="cat">{item.category.ja} · {item.category.en}</div>
+                <div className="date">{item.date}</div>
+                <div className="num">— {String(i + 1).padStart(2, '0')}</div>
+              </div>
+              <div className="journal-row-body">
+                <h3 className="journal-row-title-ja">{item.title.ja}</h3>
+                <div className="journal-row-title-en">{item.title.en}</div>
+                <p className="journal-row-excerpt">
+                  {item.excerpt.ja}
+                  <span className="en">{item.excerpt.en}</span>
+                </p>
+                <span className="journal-row-cta">
+                  Read · 続きを読む <span className="arrow" aria-hidden>→</span>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* CONTACT */}
       <section data-section="contact" className="contact">
         <div className="lead">
@@ -182,6 +224,22 @@ function DirectionA({ tweaks }) {
           <div className="body">
             {D.contact.body.ja}
             <span className="en">{D.contact.body.en}</span>
+          </div>
+          <div className="contact-cta-row">
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                const form = scrollerRef.current.querySelector('[data-section="contact"] form');
+                if (form) {
+                  form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  const firstField = form.querySelector('input, textarea, select');
+                  if (firstField) setTimeout(() => firstField.focus(), 400);
+                }
+              }}
+            >
+              <span>{D.contact.cta.ja} · {D.contact.cta.en}</span>
+              <span className="arrow" aria-hidden>→</span>
+            </button>
           </div>
           <div className="channels">
             <a className="channel" href={`mailto:${D.contact.email}`} onClick={(e)=>e.preventDefault()}>

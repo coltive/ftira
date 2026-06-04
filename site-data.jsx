@@ -6,6 +6,7 @@ const SITE_DATA = {
     { id: 'story',     ja: '物語',     en: 'Story' },
     { id: 'bread',     ja: 'パン',     en: 'Bread' },
     { id: 'locations', ja: '所在地',   en: 'Locations' },
+    { id: 'journal',   ja: '最新情報', en: 'Journal' },
     { id: 'contact',   ja: 'お問い合わせ', en: 'Contact' },
   ],
 
@@ -112,12 +113,92 @@ const SITE_DATA = {
     ],
   },
 
+  journal: {
+    eyebrow: { ja: '最新情報', en: 'Journal' },
+    title:   { ja: 'パンのまわりで、起きていること。', en: "What's happening around the bread." },
+    intro: {
+      ja: '大阪・天神橋からの近況、万博のあと、マルタからの便り。フティーラの今を、すこしずつお伝えしています。',
+      en: "Quiet dispatches from Tenjinbashi, from after the Expo, and from Malta. The story of Ftira's first chapter in Japan — told slowly.",
+    },
+    items: [
+      {
+        slug: 'tenjinbashi-permanent-home',
+        category: { ja: '新店舗', en: 'New Location' },
+        date: '2025 · 大阪',
+        title: {
+          ja: '万博で話題のフティーラ、大阪・天神橋で復活。',
+          en: 'Ftira finds its permanent home in Osaka.',
+        },
+        excerpt: {
+          ja: '万博で何千人もの来場者に愛されたフティーラ。「またどこで食べられるの？」その声が、すべての始まりでした。',
+          en: 'The question we heard most from Expo visitors: where can we find this again? That question is what moved us.',
+        },
+      },
+      {
+        slug: 'abeno-harukas-event',
+        category: { ja: 'イベント', en: 'Event' },
+        date: '2026.04 · 大阪',
+        title: {
+          ja: '万博の熱気が再び。あべのハルカスへ。',
+          en: "Ftira returns to one of Osaka's biggest stages.",
+        },
+        excerpt: {
+          ja: '万博閉幕から半年。フティーラが、あべのハルカスで再びお披露目されました。',
+          en: 'A year on from the Expo, Ftira returned — this time to Abeno Harukas.',
+        },
+      },
+      {
+        slug: 'malta-pavilion-debut',
+        category: { ja: '大阪万博2025', en: 'Malta Pavilion' },
+        date: '2025 · 大阪',
+        title: {
+          ja: 'フティーラが日本に初上陸した日。',
+          en: 'The day Ftira first arrived in Japan.',
+        },
+        excerpt: {
+          ja: '「マルタってどこ？」から始まった出会いが、ひとつの決断に変わった日。',
+          en: 'The day visitors first tasted Ftira — and the decision to stay in Osaka.',
+        },
+      },
+      {
+        slug: 'what-is-ftira',
+        category: { ja: 'ストーリー', en: 'Story' },
+        date: '2025 · Malta × Japan',
+        title: {
+          ja: 'フティーラとは何か。6,000年のパン文化。',
+          en: 'What is Ftira? A 6,000-year bread culture.',
+        },
+        excerpt: {
+          ja: '流行でも、現代の発明でもありません。マルタ島で6,000年焼き続けられてきた、素朴で雄弁なパン。',
+          en: 'Not a trend, not a modern invention. A bread that has simply always been there.',
+        },
+      },
+      {
+        slug: 'island-to-island',
+        category: { ja: '文化', en: 'Culture' },
+        date: '2025 · Malta × Japan',
+        title: {
+          ja: '島から島へ。マルタと日本、静かな共鳴。',
+          en: 'Island to island — a quiet kinship.',
+        },
+        excerpt: {
+          ja: '地図の上では遠く離れたふたつの島国。けれど、食文化には驚くほど多くの共通点があります。',
+          en: 'Two island nations separated by thousands of kilometres — and the kinship that food reveals.',
+        },
+      },
+    ],
+  },
+
   contact: {
     eyebrow: { ja: '島から、島へ。', en: 'Island to island' },
-    title:   { ja: '一緒にひろげる。', en: 'Build with us.' },
+    title:   { ja: 'フティーラを、あなたの街へ。', en: 'Bring Ftira to your city across Japan.' },
     body: {
       ja: 'パートナーシップ、報道、ご質問はこちらから。',
       en: 'For partnerships, press and enquiries please kindly reach out via our contact us form',
+    },
+    cta: {
+      ja: 'パートナーになる',
+      en: 'Become a partner',
     },
     email: 'hello@ftira.jp',
     instagram: '@ftira.japan',
